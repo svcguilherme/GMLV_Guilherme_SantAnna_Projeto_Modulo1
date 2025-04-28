@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Market Place | GLMV</title>
+    <meta name="description" content="GLMV" />
+    <meta name="author" content="Guilherme Sant Anna" />
+    <link rel="icon" type="image/x-icon" href="~/assets/favicon.ico" />
+
+    <!-- Bootstrap -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/GLMV.AppWeb.styles.css" asp-append-version="true" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">Market Place | GLMV</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">Principal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Sobre</a>
+                        </li>
+                        <!-- Futuro Dropdown -->
+                        <li class="nav-item">
+                            <a class="nav-link actitve" href="#" id="productsDropdown" role="button">
+                                
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+          
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4">
+        @RenderBody()
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light border-top">
+        <div class="container text-center">
+            <span class="text-muted">&copy; @DateTime.Now.Year - Market Place | GLMV</span>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

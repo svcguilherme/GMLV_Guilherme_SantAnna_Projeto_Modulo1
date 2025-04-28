@@ -1,0 +1,42 @@
+﻿@model GLMV.Domain.Models.RegisterUserViewModel
+
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<hr />
+<h4>@ViewData["Title"]</h4>
+<hr/>
+
+<h4>Vendedor</h4>
+
+<hr />
+<form method="post">
+    <div class="form-group">
+        <label for="FirsName">Nome</label>
+        <input type="text" id="FirstName" name="FirstName" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="LastName">Ultimo Nome</label>
+        <input type="text" id="LastName" name="LastName" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" id="Password" name="Password" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="ConfirmPassword">Confirmar Password</label>
+        <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,54 @@
+﻿@model GLMV.Domain.Models.SalesPerson;
+
+@{
+    ViewData["Title"] = "Market Place - Area do Vendedor ";
+}
+
+<h5 class="text-center">@ViewData["Title"]</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">Vendedor</h5>
+                    <p class="card-text text-center">Gerencie os seus dados</p>
+                    <a class="btn btn-primary" asp-controller="SalesPersons" asp-route-id="@Model.Id" asp-action="Edit">Dados Vendedor</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">Categorias</h5>
+                    <p class="card-text text-center">Gerencie a lista de categorias do sistema.</p>
+                    <a class="btn btn-primary" asp-controller="Category" asp-action="Index">Categorias</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <center>Lista de Produtos - Vendedor @Model.FirstName</center>
+    <hr />
+    <p>
+        <a asp-controller="products" asp-action="create-product" asp-route-id="@Model.Id" class="btn btn-info">Adicionar</a>
+    </p>
+    <hr />
+
+    @if (TempData["StatusCategoriaSucesso"] != null)
+    {
+        var mensagem = TempData["StatusCategoriaSucesso"];
+
+        <div class="alert-info">@Html.Raw(mensagem)</div>
+    }
+
+    @if (TempData["StatusCategoriaErro"] != null)
+    {
+        var mensagem = TempData["StatusCategoriaErro"];
+
+        <div id="msg_box" class="alert alert-danger">
+            @Html.Raw(mensagem)
+        </div>
+    }
+    
+    @await Html.PartialAsync("salesperson-products", Model.Products)
+</div>
