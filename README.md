@@ -64,9 +64,7 @@ Melhorar mensagens de validação nas APIs e MVC.
 
 Implementar CI/CD com GitHub Actions para estudos.
 
-🛠️ Requisitos Não Funcionais
-
-Comandos para criação de migrations.
+🛠️ Requisitos para implementar
 
 Compartilhamento de banco SQLite entre a API e a aplicação MVC.
 
@@ -83,6 +81,8 @@ Edição de Dados de Vendedor.
 Cada vendedor gerencia apenas seus próprios produtos.
 
 Restrição de exclusão de Categorias/Vendedores com produtos associados.
+
+Criei as roles de Vendedor e Associei aos vendedores.
 
 Autenticação de usuários e controle de acesso baseado em perfis.
 
