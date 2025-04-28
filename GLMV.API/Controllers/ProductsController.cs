@@ -9,7 +9,7 @@ namespace GLMV.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+
     public class ProductsController : ControllerBase
     {
         private readonly ProductService _productService;
@@ -42,6 +42,7 @@ namespace GLMV.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutProduct(int id, ProductsViewModel model)
         {
        
@@ -77,6 +78,7 @@ namespace GLMV.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Product>> PostProduct(ProductsViewModel model)
         {
             Product product = new Product();
@@ -87,6 +89,7 @@ namespace GLMV.API.Controllers
             product.ImageUrl = model.ImageUrl;
             product.Description = model.Description;
             product.Quantity = model.Quantity;
+            product.SalesPersonId = model.SalesPersonId;
             product.DataCadastro = DateOnly.FromDateTime(DateTime.Now);
             product.DataAtualizacao = DateOnly.FromDateTime(DateTime.Now);
           
@@ -98,6 +101,7 @@ namespace GLMV.API.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product =  _productService.GetById(id);

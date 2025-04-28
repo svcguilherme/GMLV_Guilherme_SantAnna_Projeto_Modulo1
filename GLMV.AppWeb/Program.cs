@@ -91,6 +91,8 @@ namespace GLMV.AppWeb
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            DbMigrationsHelpers.EnsureSeedData(app).Wait();
+
             app.Run();
         }
 

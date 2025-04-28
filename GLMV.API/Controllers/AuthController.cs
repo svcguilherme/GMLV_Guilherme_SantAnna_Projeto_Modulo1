@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace GLMV.API.Controllers
 {
@@ -14,22 +15,21 @@ namespace GLMV.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly JwtSettings _jwtSettings;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser>? _userManager;
-        private readonly JwtSettings _jwtSettings;
         private readonly SalesPersonService _salesPersonService;
 
         public AuthController(SignInManager<IdentityUser> signInManager,
                                 UserManager<IdentityUser>? userManager,
-                                IOptions<JwtSettings> jwtSettings,
-                                SalesPersonService salesPersonService)
+                                SalesPersonService salesPersonService,
+                                IOptions<JwtSettings> jwtSettings)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-            _jwtSettings = jwtSettings.Value;
             _salesPersonService = salesPersonService;
+            _jwtSettings = jwtSettings.Value;
         }
-
 
         [HttpPost("registrar")]
         public async Task<IActionResult> Registrar(RegisterUserViewModel registerUser)
@@ -84,23 +84,28 @@ namespace GLMV.API.Controllers
             return Ok();
         }
 
-        private async Task<object?> GerarJwt()
+        private async Task<object> GerarJwt()
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Segredo);
 
-            var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Issuer = _jwtSettings.Emissor,
                 Audience = _jwtSettings.Audiencia,
                 Expires = DateTime.UtcNow.AddHours(_jwtSettings.ExpiracaoHoras),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            });
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
             var encodedToken = tokenHandler.WriteToken(token);
 
-            return encodedToken;
-
+            return new
+            {
+                access_token = encodedToken,
+                expiration = tokenDescriptor.Expires
+            };
         }
 
 

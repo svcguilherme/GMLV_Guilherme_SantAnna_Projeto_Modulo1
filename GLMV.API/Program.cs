@@ -26,6 +26,9 @@ namespace GLMV.API
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+
+            builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
             // Application Services
             builder.Services.AddScoped(typeof(RepositoryService<>));
             builder.Services.AddScoped<ProductService>();
