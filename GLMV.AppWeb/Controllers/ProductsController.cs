@@ -9,6 +9,7 @@ namespace GLMV.AppWeb.Controllers
 {
 
     //   [Authorize(Roles = "SALESPERSON")]  - bão consegui colocar o authorize para funcionar
+    [Authorize]
     [Route("products")]
     public class ProductsController : Controller
     {

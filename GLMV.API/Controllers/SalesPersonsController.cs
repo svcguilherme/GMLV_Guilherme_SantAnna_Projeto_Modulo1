@@ -9,7 +9,7 @@ namespace GLMV.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "SALESPERSON")]
+    [Authorize]
     public class SalesPersonsController : ControllerBase
     {
         private readonly SalesPersonService _salesPersonService;

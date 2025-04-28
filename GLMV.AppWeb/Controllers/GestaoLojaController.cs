@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLMV.AppWeb.Controllers
 {
 
- //   [Authorize(Roles = "SALESPERSON")]  - bão consegui colocar o authorize para funcionar
+    [Authorize]
     public class GestaoLojaController : Controller
     {
         private readonly ProductService _productService;

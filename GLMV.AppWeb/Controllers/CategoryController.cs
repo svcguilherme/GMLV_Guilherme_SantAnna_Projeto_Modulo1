@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GLMV.AppWeb.Controllers
 {
     //   [Authorize(Roles = "SALESPERSON")]  - bão consegui colocar o authorize para funcionar
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly CategoryService _categoriaService;

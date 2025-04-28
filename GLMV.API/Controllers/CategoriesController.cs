@@ -8,7 +8,7 @@ namespace GLMV.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "SALESPERSON")]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly CategoryService _serviceCategory;

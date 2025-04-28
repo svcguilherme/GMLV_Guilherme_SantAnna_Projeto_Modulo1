@@ -46,9 +46,11 @@ namespace GLMV.AppWeb
 
             var app = builder.Build();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseRouting();
 
+            app.UseAuthentication();
+            
+            app.UseAuthorization();
 
             using (var scope = app.Services.CreateScope())
             {
